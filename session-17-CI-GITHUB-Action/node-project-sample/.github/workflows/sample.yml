@@ -1,0 +1,26 @@
+name: Sample CI Pipeline
+
+on:
+    push:
+        branches:
+            - main
+            - develop
+
+jobs:
+    build-and-test:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Checkout confirmation
+              run: echo "Code checked out successfully."
+
+    deploy:
+        needs: build-and-test
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Deploy application
+              run: echo "Deploying application... deployment successful." Sample CI Pipeline
