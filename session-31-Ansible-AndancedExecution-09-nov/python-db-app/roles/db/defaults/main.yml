@@ -1,0 +1,6 @@
+---
+# defaults file for roles/db
+---
+# defaults file for roles/db
+DB_USER: myappuser
+DB_PASS: myapppassword
