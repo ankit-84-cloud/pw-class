@@ -1,0 +1,39 @@
+---
+# Source: myapp/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+name: myapp1
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: myapp
+---
+# Source: myapp/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: myapp1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: myapp
+          image: "nginx:latest"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
